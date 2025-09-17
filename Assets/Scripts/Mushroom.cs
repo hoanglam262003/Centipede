@@ -5,7 +5,8 @@ public class Mushroom : MonoBehaviour
     public Sprite[] sprites;
     private SpriteRenderer spriteRenderer;
     private int health;
-    
+    public int points = 10;
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -23,7 +24,14 @@ public class Mushroom : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            GameManager.instance.AddScore(points);
         }
+    }
+
+    public void GetHealth()
+    {
+        health = sprites.Length;
+        spriteRenderer.sprite = sprites[0];
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
